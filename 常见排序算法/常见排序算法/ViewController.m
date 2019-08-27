@@ -16,11 +16,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSMutableArray *marray = [NSMutableArray arrayWithArray:@[@4,@8,@1,@20,@10,@5]];
+    NSMutableArray *marray = [NSMutableArray arrayWithArray:@[@4,@8,@3,@20,@10,@1,@5]];
 //    [self bubbleSort:marray];
-//    [self quickSort:marray withLeftIndex:0 andRightIndex:(int)marray.count-1];
+    [self quickSort:marray withLeftIndex:0 andRightIndex:(int)marray.count-1];
 //    [self insertSort:marray];
-    [self selectionSort:marray];
+//    [self selectionSort:marray];
+//    [self orderMethod];
+}
+
+- (void)orderMethod{
+    NSNumber *a = @(20);
+    NSNumber *b = @(30);
+    int result = [a compare:b];
+    int result1 = [b compare:a];
+    NSLog(@"result = %d, result1 = %d",result,result1);
+    /*
+     NSOrderedAscending = -1L,
+     NSOrderedSame,
+     NSOrderedDescending
+     */
 }
 
 /**
@@ -66,6 +80,7 @@
         while (i < j && ([mtArr[j] intValue] >= number)){
             j --;
         }
+        //比基数小 交换到左侧； 否则一直找
         [mtArr replaceObjectAtIndex:i withObject:mtArr[j]];
         while (i < j && ([mtArr[i] intValue] <= number)) {
             i ++;
@@ -113,7 +128,7 @@
         return;
     }
     for (int i = 0; i < mtArr.count; i ++) {
-        for (int j = i + 1; j < mtArr.count; j ++) {
+        for (int j = i + 1; j < mtArr.count; j ++) {//4,8,1,10,5
             if ([mtArr[i] compare:mtArr[j]] == NSOrderedDescending) {
                 [mtArr exchangeObjectAtIndex:i withObjectAtIndex:j];
             }
